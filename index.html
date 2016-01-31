@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Colorbreaker</title>
+        <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    </head>
+    <body ng-app="colorbreaker">
+        <div class="main-body" ng-controller="gameController" ng-class="{'victory': victory}">
+            <div class="screen-center">
+                <div class="row-wrapper">
+                    <div class="color-row palette-row" ng-show="activePin">
+                        <div class="color-box"></div>
+                        <div class="color-box palette">
+                            <div class="palette-color" ng-class="'{{color + '-palette-color'}}'" ng-repeat="color in colors" ng-click="selectColor(color)"></div>
+                            
+                        </div>
+                        <div class="color-box"></div>
+                    </div>
+                    <div class="color-row" ng-repeat="(index, row) in rows | orderBy:index:true">
+                        <div class="color-box"></div>
+                        <div class="color-box" ng-repeat="pin in row.pins">
+                            <div class="color-pin" ng-class="getPinClass(pin)" ng-click="pinClicked(pin)"></div>
+                        </div>
+                        <div class="color-box feedback-box">
+                            <button ng-show="lastRowIsFilled() && index === 0 && !victory" class="btn-feedback" ng-click="giveFeedback()">&#10004;</button>
+                            <div class="feedback-pin" ng-repeat="feedbackPin in row.feedback track by $index" ng-class="getFeedbackPinClass(feedbackPin)"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="victory-backdrop" ng-show="victory">
+                <div class="victory-message">
+                    <h2>You won!</h2>
+                    <button ng-click="play()">Play again</button>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="/js/app.js"></script>
+        <script type="text/javascript" src="/js/controllers/gameController.js"></script>
+    </body>
+</html>

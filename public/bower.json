@@ -1,0 +1,21 @@
+{
+  "name": "Colorbreaker",
+  "version": "1.0.0",
+  "authors": [
+    "George Balasis"
+  ],
+  "description": "Break the color code!",
+  "keywords": [
+    "color breaker code"
+  ],
+  "license": "MIT",
+  "homepage": "www.colorbreaker.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "~1.4.9"
+  }
+}
