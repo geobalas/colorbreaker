@@ -2,13 +2,12 @@
     angular.module('colorbreaker')
     .controller('gameController', function($scope) {
         var emptyRow = [null, null, null, null].map(function() {return {color: '', active: false};}),
-            emptyFeedback = ['', '', '', ''];
+            emptyFeedback = ['', '', '', '']
+            hiddenCombination = null;
         $scope.colors = ['red', 'orange', 'yellow', 'green', 'teal', 'blue', 'purple', 'brown'];
         $scope.activePin = null;
         $scope.rows = [];
         $scope.victory = false;
-
-        var hiddenCombination = null;
 
         function generateHiddenCombination() {
             var colors = angular.copy($scope.colors);
@@ -26,7 +25,6 @@
             $scope.rows = [];
             createNewRow();
             generateHiddenCombination();
-            console.log(hiddenCombination);
         };
 
         $scope.pinClicked = function(pin) {
