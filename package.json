@@ -1,10 +1,14 @@
 {
-  "name": "colorbreaker",
+  "name": "Colorbreaker",
   "version": "1.0.0",
   "private": false,
   "description": "Break the color code!",
   "license": "MIT",
   "repository": "https://github.com/geobalas/colorbreaker",
+  "scripts": {
+    "start": "node app.js",
+    "postinstall": "gulp && cd public && bower install"
+  },
   "dependencies": {
     "express": "~4.13.3"
   },
@@ -12,6 +16,7 @@
     "gulp": "~3.9.0",
     "gulp-less": "~3.0.5",
     "gulp-util": "~3.0.7",
-    "gulp-rename": "~1.2.2"
+    "gulp-rename": "~1.2.2",
+    "bower": "~1.7.2"
   }
 }

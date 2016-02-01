@@ -7,6 +7,10 @@ body {
     background-color: #354458;
 }
 
+.ng-cloak {
+    display: none;
+}
+
 .main-body {
     max-width: 720px;
     margin: 0 auto;
@@ -175,6 +179,7 @@ body {
     font-size: 5em;
     height: 100%;
     width: 100%;
+    text-decoration: none;
 }
 
 .victory-backdrop {
@@ -214,6 +219,7 @@ body {
     }
 }
 
+
 @media only screen and (max-width: 768px) {
     .main-body {
         max-width: 480px;
@@ -241,6 +247,9 @@ body {
     }
     .btn-feedback {
         font-size: 2em;
+    }
+    .victory-backdrop .victory-message {
+        width: 320px;
     }
 }
 
