@@ -10,3 +10,5 @@ Run:
 ````
 $ npm install && gulp && cd public && bower install
 ````
+
+You can play [here](http://colorbreaker.com/)
