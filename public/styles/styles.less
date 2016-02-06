@@ -182,20 +182,21 @@ body {
     text-decoration: none;
 }
 
-.victory-backdrop {
+.modal-backdrop {
     background-color: rgba(0, 0, 0, 0.4);
     height: 100%;
     left: 0;
     position: absolute;
     top: 0;
     width: 100%;
-    .victory-message {
+    overflow: auto;
+    .modal-window {
         background-color: #fff;
         border-radius: 8px;
         font-family: arial;
         left: 50%;
         max-width: 360px;
-        padding: 16px;
+        padding: 16px 32px;
         position: absolute;
         text-align: center;
         top: 50%;
@@ -216,9 +217,33 @@ body {
                 opacity: 0.8;
             }
         }
+
+        h2 {
+            margin-bottom: 15px;
+        }
+
+        p {
+            text-align: left;
+        }
     }
 }
 
+.victory-message-tries {
+    width: 100%;
+    margin-bottom: 15px;
+    display: block;
+    color: #888;
+}
+
+.info-icon {
+    color: #fff;
+    display: block;
+    font-size: 60px;
+    font-weight: 300;
+    padding: 20px 0;
+    text-align: center;
+    text-decoration: none;
+}
 
 @media only screen and (max-width: 768px) {
     .main-body {
@@ -232,6 +257,10 @@ body {
     }
     .btn-feedback {
         font-size: 3em;
+    }
+    .info-icon {
+        padding: 10px 0;
+        font-size: 50px;
     }
 }
 
@@ -248,8 +277,12 @@ body {
     .btn-feedback {
         font-size: 2em;
     }
-    .victory-backdrop .victory-message {
-        width: 320px;
+    .modal-backdrop .modal-window {
+        width: 280px;
+    }
+    .info-icon {
+        padding: 6px 0;
+        font-size: 40px;
     }
 }
 
@@ -263,7 +296,11 @@ body {
     .color-row {
         height: 50px;
     }
-    .victory-backdrop .victory-message {
-        width: 220px;
+    .modal-backdrop .modal-window {
+        width: 180px;
+    }
+    .info-icon {
+        padding: 10px 0;
+        font-size: 20px;
     }
 }

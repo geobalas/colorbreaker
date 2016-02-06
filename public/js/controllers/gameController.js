@@ -7,6 +7,11 @@
         $scope.activePin = null;
         $scope.rows = [];
         $scope.victory = false;
+        $scope.showHelp = false;
+
+        $scope.showHelpModal = function() {
+            $scope.showHelp = true;
+        };
 
         function generateFeedbackFunction() {
             var colors = angular.copy($scope.colors);

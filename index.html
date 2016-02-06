@@ -18,7 +18,9 @@
                         <div class="color-box"></div>
                     </div>
                     <div class="color-row" ng-repeat="(index, row) in rows | orderBy:index:true">
-                        <div class="color-box"></div>
+                        <div class="color-box">
+                            <a class="info-icon" ng-click="showHelpModal()" href="javascript:;" ng-if="rows.length === 1">i</a>
+                        </div>
                         <div class="color-box" ng-repeat="pin in row.pins">
                             <div class="color-pin" ng-class="getPinClass(pin)" ng-click="index === 0 && pinClicked(pin)"></div>
                         </div>
@@ -29,10 +31,29 @@
                     </div>
                 </div>
             </div>
-            <div class="victory-backdrop ng-cloak" ng-show="victory">
-                <div class="victory-message">
+            <div class="modal-backdrop ng-cloak" ng-show="victory || showHelp">
+                <div class="modal-window" ng-show="victory">
                     <h2>Congratulations, you won!</h2>
+                    <span class="victory-message-tries">Number of tries: {{rows.length}}</span>
                     <button ng-click="play()">&#8635;&nbsp;Play again</button>
+                </div>
+                <div class="modal-window" ng-show="showHelp">
+                    <h2>Rules of the game</h2>
+                    <p>
+                        The purpose of the game is to find the hidden combination of colors.
+                        After filling a row with colors, feedback is provided, in the form of
+                        black and white circles to the right of the row.
+                    </p>
+                    <p>
+                        Each <b>black</b> dot means that a color in the row <b>exists</b> in 
+                        the hidden combination and it's <b>in the correct position</b>.
+                    <p>
+                    </p>
+                    <p>
+                        Each <b>white</b> dot means that a color <b>exists</b> in the hidden
+                        combination but it's <b>not in the correct position</b>.
+                    </p>
+                    <button ng-click="showHelp = false">Got it!</button>
                 </div>
             </div>
         </div>
