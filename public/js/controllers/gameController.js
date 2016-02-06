@@ -67,10 +67,19 @@
         $scope.giveFeedback = function() {
             var feedbackPinIter = 0;
             var lastRow = $scope.rows[$scope.rows.length-1];
+            hiddenCombinationClone = angular.copy(hiddenCombination);
             lastRow.pins.forEach(function(pin, pinIndex) {
-                var combinationPinIndex = hiddenCombination.indexOf(pin.color);
+                if(hiddenCombinationClone[pinIndex] === pin.color) {
+                    lastRow.feedback[feedbackPinIter] = 'black';
+                    hiddenCombinationClone[pinIndex] = 'checked';
+                    feedbackPinIter++;
+                }
+            });
+            lastRow.pins.forEach(function(pin, pinIndex) {
+                var combinationPinIndex = hiddenCombinationClone.indexOf(pin.color);
                 if(combinationPinIndex >= 0) {
-                    lastRow.feedback[feedbackPinIter] = combinationPinIndex === pinIndex ? 'black' : 'white';
+                    lastRow.feedback[feedbackPinIter] = 'white';
+                    hiddenCombinationClone[combinationPinIndex] = 'checked';
                     feedbackPinIter++;
                 }
             });
