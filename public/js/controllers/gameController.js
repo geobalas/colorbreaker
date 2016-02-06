@@ -1,5 +1,4 @@
 (function (angular) {
-    'use strict';
     angular.module('colorbreaker')
     .controller('gameController', function($scope) {
         var emptyRow = [null, null, null, null].map(function() {return {color: '', active: false};}),
@@ -23,7 +22,7 @@
             function giveFeedback() {
                 var feedbackPinIter = 0;
                 var lastRow = $scope.rows[$scope.rows.length-1];
-                hiddenCombinationClone = angular.copy(_hiddenCombination);
+                var hiddenCombinationClone = angular.copy(_hiddenCombination);
                 // Checking for black pegs
                 lastRow.pins.forEach(function(pin, pinIndex) {
                     if(hiddenCombinationClone[pinIndex] === pin.color) {
@@ -107,7 +106,7 @@
                 return pin.color;
             });
         };
-        
+
         $scope.showHelpModal = function() {
             $scope.showHelp = true;
         };
