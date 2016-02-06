@@ -1,4 +1,5 @@
 (function (angular) {
+    'use strict';
     angular.module('colorbreaker')
     .controller('gameController', function($scope) {
         var emptyRow = [null, null, null, null].map(function() {return {color: '', active: false};}),
@@ -9,20 +10,20 @@
         $scope.victory = false;
         $scope.showHelp = false;
 
-        $scope.showHelpModal = function() {
-            $scope.showHelp = true;
-        };
+        function codeMaker() {
+            var _hiddenCombination = [null, null, null, null];
 
-        function generateFeedbackFunction() {
-            var colors = angular.copy($scope.colors);
-            var hiddenCombination = [null, null, null, null].map(function() {
-                return colors.splice(Math.floor(Math.random() * colors.length), 1)[0];
-            });
+            function resetHiddenCombination() {
+                var colors = angular.copy($scope.colors);
+                _hiddenCombination = [null, null, null, null].map(function() {
+                    return colors.splice(Math.floor(Math.random() * colors.length), 1)[0];
+                });
+            }
 
-            return function() {
+            function giveFeedback() {
                 var feedbackPinIter = 0;
                 var lastRow = $scope.rows[$scope.rows.length-1];
-                hiddenCombinationClone = angular.copy(hiddenCombination);
+                hiddenCombinationClone = angular.copy(_hiddenCombination);
                 // Checking for black pegs
                 lastRow.pins.forEach(function(pin, pinIndex) {
                     if(hiddenCombinationClone[pinIndex] === pin.color) {
@@ -52,6 +53,11 @@
                     createNewRow();
                 }
             }
+
+            return {
+                resetHiddenCombination: resetHiddenCombination,
+                giveFeedback: giveFeedback
+            };
         }
 
         function createNewRow() {
@@ -62,7 +68,7 @@
             $scope.victory = false;
             $scope.rows = [];
             createNewRow();
-            $scope.giveFeedback = generateFeedbackFunction();
+            $scope.codeMaker.resetHiddenCombination();
         };
 
         $scope.pinClicked = function(pin) {
@@ -101,8 +107,12 @@
                 return pin.color;
             });
         };
+        
+        $scope.showHelpModal = function() {
+            $scope.showHelp = true;
+        };
 
-        $scope.giveFeedback = generateFeedbackFunction();
+        $scope.codeMaker = codeMaker();
 
         $scope.play();
     });
